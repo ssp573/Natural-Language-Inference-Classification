@@ -68,7 +68,7 @@ def build_vocab(data):
     max_len1 = max([len(sent[0]) for sent in data])
     max_len2 = max([len(sent[1]) for sent in data])
     with open('wiki-news-300d-1M.vec') as f:
-        loaded_embeddings_ft = np.zeros((words_to_load, 300))
+        loaded_embeddings_ft = np.zeros((words_to_load+1, 300))
         token2id = {}
         id2token = {}
         ordered_words_ft = []
@@ -80,7 +80,7 @@ def build_vocab(data):
             token2id[s[0]] = i
             id2token[i] = s[0]
             ordered_words_ft.append(s[0])
-        #loaded_embeddings_ft[PAD_IDX,:] = np.zeros(300)
+        loaded_embeddings_ft[PAD_IDX,:] = np.zeros(300)
         id2token[PAD_IDX] = '<pad>'
         token2id['<pad>'] = PAD_IDX
     """
